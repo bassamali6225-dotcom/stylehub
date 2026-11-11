@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Your Order | StyleHub</title>
+    <link rel="stylesheet" href="/frontend/css/style.css">
+    <link rel="canonical" href="http://127.0.0.1:8000/frontend/order-tracking.html">
+    <meta name="description" content="Track your StyleHub clothing order in real-time. Follow fulfillment from Pending, In Queue, Dispatched to Delivered.">
+</head>
+<body>
+    <div class="top-bar">
+        <span>Complimentary express delivery on all orders over $150</span>
+    </div>
+
+    <!-- Public Header -->
+    <header class="site-header">
+        <div class="container nav-container">
+            <a href="/frontend/index.html" class="brand-logo" aria-label="StyleHub Home">
+                <span class="brand-badge">SH</span>
+                <span>StyleHub</span>
+            </a>
+
+            <nav class="nav-menu" aria-label="Main Navigation">
+                <a href="/frontend/index.html" class="nav-link">Home</a>
+                <a href="/frontend/products.html" class="nav-link">Products</a>
+                <a href="/frontend/index.html#categories" class="nav-link">Categories</a>
+                <a href="/frontend/wishlist.html" class="nav-link">Wishlist</a>
+                <a href="/frontend/cart.html" class="nav-link">Cart</a>
+            </nav>
+
+            <div class="nav-actions">
+                <div id="nav-auth-container">
+                    <a href="/frontend/login.html" class="nav-action-btn">
+                        <span>👤</span>
+                        <span>Login</span>
+                    </a>
+                </div>
+                <button type="button" class="mobile-menu-toggle" aria-label="Toggle navigation">☰</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container py-8" id="tracking-main-container">
+        <!-- Search Card -->
+        <div class="card container-narrow mb-8">
+            <div class="card-header">
+                <h1 class="card-title">Track Your StyleHub Order</h1>
+                <p class="text-sm text-secondary mt-1">Enter your order reference code (e.g. ORD-2026-1001) to trace shipment status.</p>
+            </div>
+            <div class="card-body">
+                <form id="tracking-search-form" class="flex gap-2">
+                    <input type="text" id="track-order-input" class="form-input flex-1" placeholder="Enter Order Reference Number" required>
+                    <button type="submit" class="btn btn-primary">Track Order</button>
+                </form>
+            </div>
+        </div>
+
+        <div id="tracking-alert" class="alert is-hidden" role="alert"></div>
+
+        <!-- Skeleton View -->
+        <div id="tracking-skeleton-view" class="is-hidden">
+            <div class="tracking-timeline-wrapper">
+                <div class="skeleton-line skeleton-title mb-6"></div>
+                <div class="skeleton-line"></div>
+            </div>
+            <div class="card mt-6">
+                <div class="card-body">
+                    <div class="skeleton-line skeleton-title"></div>
+                    <div class="skeleton-line mt-4"></div>
+                    <div class="skeleton-line mt-2"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Loaded Tracking Details View -->
+        <div id="tracking-details-view" class="is-hidden">
+            <!-- Header bar for found order -->
+            <div class="card mb-6">
+                <div class="card-body flex justify-between items-center flex-wrap gap-4">
+                    <div>
+                        <div class="text-xs text-muted font-bold tracking-wider">ORDER REFERENCE</div>
+                        <div class="text-2xl font-black text-dark" id="display-order-number">--</div>
+                        <div class="text-sm text-secondary mt-1" id="display-order-date">--</div>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <span id="display-order-status-badge" class="badge badge-info">--</span>
+                        <button type="button" id="tracking-return-btn" class="btn btn-outline btn-sm is-hidden">Request Return</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Returned Status Banner (if Returned) -->
+            <div id="returned-status-banner" class="alert alert-danger mb-6 is-hidden">
+                <strong>Order Returned:</strong> This order has been processed as returned. If you have questions regarding credit or replacements, contact our concierge desk.
+            </div>
+
+            <!-- Return Status Card (if Return requested) -->
+            <div id="existing-return-banner" class="alert alert-warning mb-6 is-hidden"></div>
+
+            <!-- Multi-Step Timeline -->
+            <div class="tracking-timeline-wrapper">
+                <h2 class="text-lg font-bold text-dark mb-6">Fulfillment Timeline</h2>
+                <div class="tracking-timeline" id="tracking-timeline-steps">
+                    <!-- Progress bar line -->
+                    <div class="timeline-connector">
+                        <div class="timeline-connector-progress" id="timeline-progress-bar"></div>
+                    </div>
+
+                    <!-- Step 1: Pending -->
+                    <div class="tracking-step" id="step-pending">
+                        <div class="step-node">1</div>
+                        <div class="step-title">Pending</div>
+                        <div class="step-meta">Order Received</div>
+                    </div>
+
+                    <!-- Step 2: In Queue -->
+                    <div class="tracking-step" id="step-inqueue">
+                        <div class="step-node">2</div>
+                        <div class="step-title">In Queue</div>
+                        <div class="step-meta">Preparing Order</div>
+                    </div>
+
+                    <!-- Step 3: Dispatched -->
+                    <div class="tracking-step" id="step-dispatched">
+                        <div class="step-node">3</div>
+                        <div class="step-title">Dispatched</div>
+                        <div class="step-meta" id="step-dispatched-meta">With Courier</div>
+                    </div>
+
+                    <!-- Step 4: Delivered -->
+                    <div class="tracking-step" id="step-delivered">
+                        <div class="step-node">4</div>
+                        <div class="step-title">Delivered</div>
+                        <div class="step-meta">Completed</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Two-Column Order Breakdown -->
+            <div class="grid grid-2 gap-6 mt-6">
+                <!-- Order Items -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Purchased Items</h2>
+                    </div>
+                    <div class="card-body" id="tracking-items-list"></div>
+                </div>
+
+                <!-- Destination and Payment -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Delivery & Billing Summary</h2>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="text-sm font-bold text-muted uppercase tracking-wider mb-2">Shipping Destination</h3>
+                        <div id="tracking-shipping-address" class="text-sm text-secondary mb-6"></div>
+
+                        <h3 class="text-sm font-bold text-muted uppercase tracking-wider mb-2">Payment Method</h3>
+                        <div class="demo-payment-pill mb-6">
+                            <span>💵</span>
+                            <div class="text-sm">
+                                <div class="font-bold text-dark">Cash on Delivery (Demo Checkout)</div>
+                                <div class="text-secondary text-xs">Payment upon physical delivery</div>
+                            </div>
+                        </div>
+
+                        <h3 class="text-sm font-bold text-muted uppercase tracking-wider mb-2">Order Breakdown</h3>
+                        <div class="summary-row">
+                            <span>Subtotal</span>
+                            <span id="track-subtotal-val">$0.00</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Express Shipping</span>
+                            <span id="track-shipping-val">$0.00</span>
+                        </div>
+                        <div class="summary-row total-row">
+                            <span>Total Paid / Due</span>
+                            <span id="track-total-val" class="text-primary">$0.00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Return Modal -->
+    <div id="tracking-return-modal" class="modal-overlay is-hidden" role="dialog" aria-modal="true" aria-labelledby="modal-track-return-title">
+        <div class="modal-card">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="card-title" id="modal-track-return-title">Request Order Return</h2>
+                <button type="button" class="btn btn-outline btn-sm" id="close-track-return-modal-btn">✕</button>
+            </div>
+            <p class="text-sm text-secondary mb-4">
+                Please submit the reason for returning your delivered StyleHub items.
+            </p>
+            <form id="track-return-form" class="auth-form" novalidate>
+                <input type="hidden" id="track-return-order-id" name="order_id" value="">
+
+                <div class="form-group">
+                    <label for="track-return-reason" class="form-label">Reason for Return</label>
+                    <select id="track-return-reason" name="reason" class="form-select" required>
+                        <option value="">Select a reason...</option>
+                        <option value="Incorrect Size / Fit">Incorrect Size / Fit</option>
+                        <option value="Damaged or Defective Item">Damaged or Defective Item</option>
+                        <option value="Does Not Match Description">Does Not Match Description</option>
+                        <option value="Received Wrong Item">Received Wrong Item</option>
+                        <option value="Changed Mind">Changed Mind</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="track-return-details" class="form-label">Additional Details (Optional)</label>
+                    <textarea id="track-return-details" name="details" class="form-input" rows="3" placeholder="Provide any details to assist our concierge team..."></textarea>
+                </div>
+
+                <div class="mt-4 flex gap-4">
+                    <button type="submit" class="btn btn-primary flex-1">Submit Return Request</button>
+                    <button type="button" class="btn btn-outline" id="cancel-track-return-modal-btn">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Public Footer -->
+    <footer class="site-footer">
+        <div class="container footer-bottom">
+            <div>&copy; 2026 StyleHub Fashion Retail Ltd. All rights reserved.</div>
+            <div>Phase 3 Integrated Commerce Active.</div>
+        </div>
+    </footer>
+
+    <script src="/frontend/js/main.js"></script>
+</body>
+</html>

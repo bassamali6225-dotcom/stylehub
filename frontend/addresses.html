@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delivery Addresses | StyleHub</title>
+    <link rel="stylesheet" href="/frontend/css/style.css">
+    <link rel="canonical" href="http://127.0.0.1:8000/frontend/addresses.html">
+    <meta name="description" content="Manage your saved shipping and billing destinations at StyleHub.">
+</head>
+<body>
+    <div class="top-bar">
+        <span>Complimentary express delivery on all orders over $150</span>
+    </div>
+
+    <header class="site-header">
+        <div class="container nav-container">
+            <a href="/frontend/index.html" class="brand-logo" aria-label="StyleHub Home">
+                <span class="brand-badge">SH</span>
+                <span>StyleHub</span>
+            </a>
+
+            <nav class="nav-menu" aria-label="Main Navigation">
+                <a href="/frontend/index.html" class="nav-link">Home</a>
+                <a href="/frontend/products.html" class="nav-link">Products</a>
+                <a href="/frontend/index.html#categories" class="nav-link">Categories</a>
+                <a href="/frontend/wishlist.html" class="nav-link">Wishlist</a>
+                <a href="/frontend/cart.html" class="nav-link">Cart</a>
+            </nav>
+
+            <div class="nav-actions">
+                <div id="nav-auth-container">
+                    <a href="/frontend/login.html" class="nav-action-btn">
+                        <span>👤</span>
+                        <span>Login</span>
+                    </a>
+                </div>
+                <button type="button" class="mobile-menu-toggle" aria-label="Toggle navigation">☰</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container py-8" id="addresses-main-container">
+        <div class="section-header">
+            <div>
+                <h1 class="page-title">Delivery Addresses</h1>
+                <p class="page-subtitle">Manage delivery destinations for faster, seamless checkout</p>
+            </div>
+            <button type="button" class="btn btn-primary" id="open-add-address-btn">+ Add New Address</button>
+        </div>
+
+        <div id="address-alert" class="alert is-hidden" role="alert"></div>
+
+        <!-- Skeleton Address Cards -->
+        <div id="addresses-skeleton-view" class="address-grid">
+            <div class="skeleton-card">
+                <div class="skeleton-line skeleton-title"></div>
+                <div class="skeleton-line mt-2"></div>
+                <div class="skeleton-line mt-2"></div>
+            </div>
+            <div class="skeleton-card">
+                <div class="skeleton-line skeleton-title"></div>
+                <div class="skeleton-line mt-2"></div>
+                <div class="skeleton-line mt-2"></div>
+            </div>
+        </div>
+
+        <!-- Address Cards Grid -->
+        <div id="addresses-content-view" class="address-grid is-hidden"></div>
+
+        <!-- Add/Edit Address Modal Form -->
+        <div id="address-modal" class="modal-overlay is-hidden" role="dialog" aria-modal="true" aria-labelledby="modal-address-title">
+            <div class="modal-card">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="card-title" id="modal-address-title">Add Delivery Address</h2>
+                    <button type="button" class="btn btn-outline btn-sm" id="close-address-modal-btn">✕</button>
+                </div>
+
+                <form id="address-form" class="auth-form" novalidate>
+                    <input type="hidden" name="csrf_token" value="">
+                    <input type="hidden" name="action" id="address-form-action" value="add">
+                    <input type="hidden" name="address_id" id="address-form-id" value="">
+
+                    <div class="form-group">
+                        <label for="addr-fullname" class="form-label">Full Name</label>
+                        <input type="text" id="addr-fullname" name="full_name" class="form-input" required placeholder="Jane Doe">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="addr-phone" class="form-label">Contact Telephone</label>
+                        <input type="tel" id="addr-phone" name="phone" class="form-input" required placeholder="+1 (555) 019-2834">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="addr-line1" class="form-label">Street Address</label>
+                        <input type="text" id="addr-line1" name="address_line1" class="form-input" required placeholder="142 Evergreen Terrace">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="addr-line2" class="form-label">Apartment, Suite, Unit (Optional)</label>
+                        <input type="text" id="addr-line2" name="address_line2" class="form-input" placeholder="Apt 4B">
+                    </div>
+
+                    <div class="grid grid-cols-2">
+                        <div class="form-group">
+                            <label for="addr-city" class="form-label">City</label>
+                            <input type="text" id="addr-city" name="city" class="form-input" required placeholder="Portland">
+                        </div>
+                        <div class="form-group">
+                            <label for="addr-state" class="form-label">State / Province</label>
+                            <input type="text" id="addr-state" name="state" class="form-input" required placeholder="Oregon">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2">
+                        <div class="form-group">
+                            <label for="addr-postal" class="form-label">Postal / ZIP Code</label>
+                            <input type="text" id="addr-postal" name="postal_code" class="form-input" required placeholder="97201">
+                        </div>
+                        <div class="form-group">
+                            <label for="addr-country" class="form-label">Country</label>
+                            <select id="addr-country" name="country" class="form-select">
+                                <option value="United States">United States</option>
+                                <option value="United Kingdom">United Kingdom</option>
+                                <option value="Canada">Canada</option>
+                                <option value="Australia">Australia</option>
+                                <option value="Germany">Germany</option>
+                                <option value="France">France</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="flex items-center gap-2">
+                            <input type="checkbox" id="addr-default" name="is_default" value="1">
+                            <span class="form-label">Set as default shipping address</span>
+                        </label>
+                    </div>
+
+                    <div class="flex gap-4 mt-4">
+                        <button type="submit" class="btn btn-primary btn-block">Save Address</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- Public Footer -->
+    <footer class="site-footer">
+        <div class="container footer-bottom">
+            <div>&copy; 2026 StyleHub Fashion Retail Ltd. All rights reserved.</div>
+            <div>Address Directory Protected by Customer Authentication.</div>
+        </div>
+    </footer>
+
+    <script src="/frontend/js/main.js"></script>
+</body>
+</html>

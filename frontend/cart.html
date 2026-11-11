@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Bag | StyleHub</title>
+    <link rel="stylesheet" href="/frontend/css/style.css">
+    <link rel="canonical" href="http://127.0.0.1:8000/frontend/cart.html">
+    <meta name="description" content="Review your StyleHub shopping bag, select item quantities, calculate order totals, and proceed to secure checkout.">
+</head>
+<body>
+    <div class="top-bar">
+        <span>Complimentary express delivery on all orders over $150</span>
+    </div>
+
+    <!-- Public Header -->
+    <header class="site-header">
+        <div class="container nav-container">
+            <a href="/frontend/index.html" class="brand-logo" aria-label="StyleHub Home">
+                <span class="brand-badge">SH</span>
+                <span>StyleHub</span>
+            </a>
+
+            <nav class="nav-menu" aria-label="Main Navigation">
+                <a href="/frontend/index.html" class="nav-link">Home</a>
+                <a href="/frontend/products.html" class="nav-link">Products</a>
+                <a href="/frontend/index.html#categories" class="nav-link">Categories</a>
+                <a href="/frontend/wishlist.html" class="nav-link">Wishlist</a>
+                <a href="/frontend/cart.html" class="nav-link active">Cart</a>
+            </nav>
+
+            <div class="nav-actions">
+                <div id="nav-auth-container">
+                    <a href="/frontend/login.html" class="nav-action-btn">
+                        <span>👤</span>
+                        <span>Login</span>
+                    </a>
+                </div>
+                <button type="button" class="mobile-menu-toggle" aria-label="Toggle navigation">☰</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container py-8" id="cart-main-container">
+        <!-- Checkout Progress Stepper -->
+        <nav class="checkout-stepper-bar" aria-label="Checkout Progress">
+            <div class="checkout-step active">
+                <span class="step-num">1</span>
+                <span class="step-label">Shopping Bag</span>
+            </div>
+            <div class="checkout-step-divider"></div>
+            <div class="checkout-step">
+                <span class="step-num">2</span>
+                <span class="step-label">Delivery & Payment</span>
+            </div>
+            <div class="checkout-step-divider"></div>
+            <div class="checkout-step">
+                <span class="step-num">3</span>
+                <span class="step-label">Order Confirmed</span>
+            </div>
+        </nav>
+
+        <div class="section-header">
+            <div>
+                <h1 class="page-title">Shopping Bag</h1>
+                <p class="page-subtitle" id="cart-item-count-subtitle">Reviewing your selected apparel</p>
+            </div>
+            <a href="/frontend/products.html" class="link-primary">Continue Shopping →</a>
+        </div>
+
+        <div id="cart-alert" class="alert is-hidden" role="alert"></div>
+
+        <!-- Skeleton Cart View (Replaced when loaded) -->
+        <div id="cart-skeleton-view" class="cart-layout">
+            <div class="cart-table-wrapper">
+                <div class="skeleton-card">
+                    <div class="skeleton-line skeleton-title"></div>
+                    <div class="skeleton-line"></div>
+                </div>
+                <div class="skeleton-card mt-2">
+                    <div class="skeleton-line skeleton-title"></div>
+                    <div class="skeleton-line"></div>
+                </div>
+            </div>
+            <div class="cart-summary-card">
+                <div class="skeleton-line skeleton-title"></div>
+                <div class="skeleton-line skeleton-price mt-4"></div>
+                <div class="skeleton-line mt-4"></div>
+            </div>
+        </div>
+
+        <!-- Loaded Cart Container (Populated via JS) -->
+        <div id="cart-content-view" class="is-hidden"></div>
+    </main>
+
+    <!-- Public Footer -->
+    <footer class="site-footer">
+        <div class="container footer-bottom">
+            <div>&copy; 2026 StyleHub Fashion Retail Ltd. All rights reserved.</div>
+            <div>Secure Cart Management Active.</div>
+        </div>
+    </footer>
+
+    <script src="/frontend/js/main.js"></script>
+</body>
+</html>

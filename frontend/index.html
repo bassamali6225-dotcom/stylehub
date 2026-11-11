@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StyleHub | Modern Tailoring & Contemporary Apparel</title>
+    <link rel="stylesheet" href="/frontend/css/style.css">
+    <link rel="canonical" href="http://127.0.0.1:8000/frontend/index.html">
+    <meta name="description"
+        content="Discover StyleHub's curated wardrobe: precision-cut pants, breathable poplin shirts, architectural outerwear, and handcrafted footwear across Men, Women, and Children.">
+    <meta name="robots" content="index, follow">
+</head>
+
+<body>
+    <!-- Top Announcement Bar -->
+    <div class="top-bar">
+        <span>Complimentary express delivery on all orders over $150 • <span class="top-bar-highlight">Spring / Autumn
+                2026 Collection Live</span></span>
+    </div>
+
+    <!-- Public Navigation (Strictly NO admin link or dashboard button) -->
+    <header class="site-header">
+        <div class="container nav-container">
+            <a href="/frontend/index.html" class="brand-logo" aria-label="StyleHub Home">
+                <span class="brand-badge">SH</span>
+                <span>StyleHub</span>
+            </a>
+
+            <nav class="nav-menu" aria-label="Main Navigation">
+                <a href="/frontend/index.html" class="nav-link active">Home</a>
+                <a href="/frontend/products.html" class="nav-link">Products</a>
+                <a href="/frontend/index.html#categories" class="nav-link">Categories</a>
+                <a href="/frontend/wishlist.html" class="nav-link">Wishlist</a>
+                <a href="/frontend/cart.html" class="nav-link">Cart</a>
+            </nav>
+
+            <div class="nav-actions">
+                <div id="nav-auth-container">
+                    <a href="/frontend/login.html" class="nav-action-btn">
+                        <span>👤</span>
+                        <span>Login</span>
+                    </a>
+                </div>
+                <button type="button" class="mobile-menu-toggle" aria-label="Toggle navigation">☰</button>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <!-- Hero Section -->
+        <section class="hero-section" aria-label="StyleHub Seasonal Showcase">
+            <div class="container">
+                <div class="hero-inner">
+                    <span class="badge badge-primary">2026 Ready-to-Wear Capsule</span>
+                    <h1 class="hero-title">Timeless Wardrobe Essentials Engineered with Precision</h1>
+                    <p class="hero-subtitle">
+                        Architectural tailoring meets sustainable organic textiles. Explore refined menswear,
+                        womenswear, and children's collections crafted in signature forest tones, slate greys, and pure
+                        optical whites.
+                    </p>
+                    <div class="hero-cta-group">
+                        <a href="/frontend/products.html" class="btn btn-primary btn-lg">View All Products</a>
+                        <a href="#categories" class="btn btn-outline btn-lg">Shop by Category</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Short Store Introduction -->
+        <section class="section-intro" aria-label="Brand Philosophy">
+            <div class="container container-sm text-center">
+                <span class="eyebrow-tag">Ethical Craftsmanship • Modern Tailoring</span>
+                <h2 class="intro-headline">Silhouettes engineered to endure seasons, not trends.</h2>
+                <p class="intro-text">
+                    StyleHub unites architectural cuts with certified organic textiles. Each piece is tailored in
+                    signature forest greens, slate greys, and pure optical whites to build a calm, cohesive wardrobe for
+                    everyday living.
+                </p>
+            </div>
+        </section>
+
+        <!-- Shop by Category Section -->
+        <section class="section" id="categories" aria-label="Shop by Category">
+            <div class="container">
+                <div class="section-header">
+                    <div>
+                        <span class="eyebrow-tag">Curated Departments</span>
+                        <h2 class="section-title">Shop by Category</h2>
+                        <p class="section-desc">Pants, shirts, outerwear, and footwear across Men, Women, and Children
+                        </p>
+                    </div>
+                    <a href="/frontend/products.html" class="link-primary">Browse All Products →</a>
+                </div>
+
+                <div class="grid grid-cols-4 mt-6">
+                    <article class="category-card">
+                        <a href="/frontend/products.html?category=pants" class="category-link">
+                            <div class="category-img-box">
+                                <img src="https://images.unsplash.com/photo-1542272604-780c96856592?auto=format&fit=crop&w=600&q=80"
+                                    alt="Tailored Wool Trousers and Everyday Chinos" loading="lazy">
+                            </div>
+                            <div class="category-info">
+                                <h3 class="category-title">Pants & Trousers</h3>
+                                <span class="category-count">Men, Women, Children Collections</span>
+                            </div>
+                        </a>
+                    </article>
+
+                    <article class="category-card">
+                        <a href="/frontend/products.html?category=shirts" class="category-link">
+                            <div class="category-img-box">
+                                <img src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=600&q=80"
+                                    alt="Crisp Poplin and Silk Shirts" loading="lazy">
+                            </div>
+                            <div class="category-info">
+                                <h3 class="category-title">Shirts & Tops</h3>
+                                <span class="category-count">Men, Women, Children Collections</span>
+                            </div>
+                        </a>
+                    </article>
+
+                    <article class="category-card">
+                        <a href="/frontend/products.html?category=jackets" class="category-link">
+                            <div class="category-img-box">
+                                <img src="https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=600&q=80"
+                                    alt="Melton Wool Coats and Field Jackets" loading="lazy">
+                            </div>
+                            <div class="category-info">
+                                <h3 class="category-title">Jackets & Coats</h3>
+                                <span class="category-count">Men, Women, Children Collections</span>
+                            </div>
+                        </a>
+                    </article>
+
+                    <article class="category-card">
+                        <a href="/frontend/products.html?category=shoes" class="category-link">
+                            <div class="category-img-box">
+                                <img src="https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=600&q=80"
+                                    alt="Hand-stitched Loafers and Minimalist Leather Footwear" loading="lazy">
+                            </div>
+                            <div class="category-info">
+                                <h3 class="category-title">Shoes & Footwear</h3>
+                                <span class="category-count">Men, Women, Children Collections</span>
+                            </div>
+                        </a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Products Section (Limited to 6–8 curated products) -->
+        <section class="section bg-surface" aria-label="Featured Garments">
+            <div class="container">
+                <div class="section-header">
+                    <div>
+                        <span class="eyebrow-tag">Curated Highlights</span>
+                        <h2 class="section-title">Featured Products</h2>
+                        <p class="section-desc">Hand-selected seasonal essentials for refined everyday wear</p>
+                    </div>
+                    <a href="/frontend/products.html" class="link-primary">View All Products →</a>
+                </div>
+
+                <!-- Container loaded dynamically via main.js with 6-8 items only -->
+                <div id="home-product-sections">
+                    <div class="product-grid" id="home-featured-grid">
+                        <div class="skeleton-card">
+                            <div class="skeleton-media"></div>
+                            <div class="skeleton-line skeleton-title"></div>
+                            <div class="skeleton-line skeleton-meta"></div>
+                            <div class="skeleton-line skeleton-price"></div>
+                        </div>
+                        <div class="skeleton-card">
+                            <div class="skeleton-media"></div>
+                            <div class="skeleton-line skeleton-title"></div>
+                            <div class="skeleton-line skeleton-meta"></div>
+                            <div class="skeleton-line skeleton-price"></div>
+                        </div>
+                        <div class="skeleton-card">
+                            <div class="skeleton-media"></div>
+                            <div class="skeleton-line skeleton-title"></div>
+                            <div class="skeleton-line skeleton-meta"></div>
+                            <div class="skeleton-line skeleton-price"></div>
+                        </div>
+                        <div class="skeleton-card">
+                            <div class="skeleton-media"></div>
+                            <div class="skeleton-line skeleton-title"></div>
+                            <div class="skeleton-line skeleton-meta"></div>
+                            <div class="skeleton-line skeleton-price"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="home-bottom-cta mt-10 text-center">
+                    <a href="/frontend/products.html" class="btn btn-primary btn-lg">View All Products</a>
+                    <a href="#categories" class="btn btn-outline btn-lg ml-3">Shop by Category</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Promotional Banner -->
+        <section class="promo-banner-section" aria-label="Seasonal Promotion">
+            <div class="container">
+                <div class="promo-banner-inner">
+                    <div class="promo-banner-content">
+                        <span class="badge badge-primary">Spring / Autumn 2026 Capsule</span>
+                        <h2 class="promo-banner-title">Complimentary Express Delivery on Orders Over $150</h2>
+                        <p class="promo-banner-desc">
+                            Upgrade your seasonal wardrobe with sustainable outerwear, structured chinos, and breathable
+                            poplin tops. Includes live courier tracking and 30-day effortless returns.
+                        </p>
+                        <div class="promo-banner-actions">
+                            <a href="/frontend/products.html" class="btn btn-primary">View All Products</a>
+                            <a href="#categories" class="btn btn-outline">Shop by Category</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Benefits & Service Guarantees Section -->
+        <section class="section bg-alt" aria-label="Brand Commitments">
+            <div class="container">
+                <div class="grid grid-cols-4 service-commitments-grid">
+                    <div class="service-card">
+                        <div class="service-icon">🌿</div>
+                        <h3 class="service-title">Sustainable Craft</h3>
+                        <p class="service-desc">100% GOTS-certified organic cotton, traceable virgin wool, and natural
+                            corozo nut buttons.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">📐</div>
+                        <h3 class="service-title">Architectural Fit</h3>
+                        <p class="service-desc">Every seam reinforced with French finishings and balanced drape
+                            engineered for daily comfort.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">🚀</div>
+                        <h3 class="service-title">Express Dispatch</h3>
+                        <p class="service-desc">Complimentary tracked delivery on orders over $150 with automated
+                            dispatch notifications.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">↩️</div>
+                        <h3 class="service-title">30-Day Returns</h3>
+                        <p class="service-desc">Hassle-free exchanges and automated return approvals directly through
+                            your customer account.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Public Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <a href="/frontend/index.html" class="brand-logo footer-link">
+                        <span class="brand-badge">SH</span>
+                        <span>StyleHub</span>
+                    </a>
+                    <p class="footer-brand-desc">
+                        A curated wardrobe of essential tailoring, modern outerwear, and everyday apparel designed for
+                        longevity.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="footer-heading">Collections</h3>
+                    <div class="footer-links">
+                        <a href="/frontend/products.html?category=pants" class="footer-link">Pants & Trousers</a>
+                        <a href="/frontend/products.html?category=shirts" class="footer-link">Shirts & Tops</a>
+                        <a href="/frontend/products.html?category=jackets" class="footer-link">Jackets & Coats</a>
+                        <a href="/frontend/products.html?category=shoes" class="footer-link">Footwear</a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="footer-heading">Customer Care</h3>
+                    <div class="footer-links">
+                        <a href="/frontend/order-tracking.html" class="footer-link">Track Your Order</a>
+                        <a href="/frontend/profile.html" class="footer-link">My Account</a>
+                        <a href="/frontend/wishlist.html" class="footer-link">Saved Items</a>
+                        <a href="/frontend/cart.html" class="footer-link">Shopping Bag</a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="footer-heading">Security & Quality</h3>
+                    <div class="footer-links">
+                        <span class="footer-link">256-Bit SSL Protection</span>
+                        <span class="footer-link">Bcrypt Password Security</span>
+                        <span class="footer-link">Cryptographic CSRF Tokens</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div>&copy; 2026 StyleHub Fashion Retail Ltd. All rights reserved.</div>
+                <div>Designed with Green, White, Grey, and Black Aesthetic.</div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/frontend/js/main.js"></script>
+</body>
+
+</html>

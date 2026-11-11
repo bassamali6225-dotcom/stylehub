@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details | StyleHub</title>
+    <link rel="stylesheet" href="/frontend/css/style.css">
+    <meta name="description" content="View detailed product specifications, textile composition, sizing, customer reviews, and colour options at StyleHub.">
+    <meta name="robots" content="index, follow">
+</head>
+<body>
+    <!-- Top Announcement Bar -->
+    <div class="top-bar">
+        <span>Complimentary express delivery on all orders over $150</span>
+    </div>
+
+    <!-- Public Navigation (Strictly NO admin link or dashboard button) -->
+    <header class="site-header">
+        <div class="container nav-container">
+            <a href="/frontend/index.html" class="brand-logo" aria-label="StyleHub Home">
+                <span class="brand-badge">SH</span>
+                <span>StyleHub</span>
+            </a>
+
+            <nav class="nav-menu" aria-label="Main Navigation">
+                <a href="/frontend/index.html" class="nav-link">Home</a>
+                <a href="/frontend/products.html" class="nav-link active">Products</a>
+                <a href="/frontend/index.html#categories" class="nav-link">Categories</a>
+                <a href="/frontend/wishlist.html" class="nav-link">Wishlist</a>
+                <a href="/frontend/cart.html" class="nav-link">Cart</a>
+            </nav>
+
+            <div class="nav-actions">
+                <div id="nav-auth-container">
+                    <a href="/frontend/login.html" class="nav-action-btn">
+                        <span>👤</span>
+                        <span>Login</span>
+                    </a>
+                </div>
+                <button type="button" class="mobile-menu-toggle" aria-label="Toggle navigation">☰</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container py-8" id="product-detail-view">
+        <!-- Skeleton Product Details View (Replaced dynamically via API) -->
+        <div class="product-detail-layout">
+            <div class="gallery-container">
+                <div class="skeleton-card">
+                    <div class="skeleton-media"></div>
+                </div>
+            </div>
+            <div class="detail-info-pane">
+                <div class="skeleton-line skeleton-title"></div>
+                <div class="skeleton-line skeleton-price"></div>
+                <div class="skeleton-line skeleton-meta"></div>
+                <div class="skeleton-line"></div>
+                <div class="skeleton-line"></div>
+                <div class="skeleton-line skeleton-sub"></div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Public Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <a href="/frontend/index.html" class="brand-logo footer-link">
+                        <span class="brand-badge">SH</span>
+                        <span>StyleHub</span>
+                    </a>
+                    <p class="footer-brand-desc">
+                        A curated wardrobe of essential tailoring, modern outerwear, and everyday apparel designed for longevity.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="footer-heading">Collections</h3>
+                    <div class="footer-links">
+                        <a href="/frontend/products.html?category=pants" class="footer-link">Pants & Trousers</a>
+                        <a href="/frontend/products.html?category=shirts" class="footer-link">Shirts & Tops</a>
+                        <a href="/frontend/products.html?category=jackets" class="footer-link">Jackets & Coats</a>
+                        <a href="/frontend/products.html?category=shoes" class="footer-link">Footwear</a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="footer-heading">Customer Care</h3>
+                    <div class="footer-links">
+                        <a href="/frontend/order-tracking.html" class="footer-link">Track Your Order</a>
+                        <a href="/frontend/profile.html" class="footer-link">My Account</a>
+                        <a href="/frontend/wishlist.html" class="footer-link">Saved Items</a>
+                        <a href="/frontend/cart.html" class="footer-link">Shopping Bag</a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="footer-heading">Security & Quality</h3>
+                    <div class="footer-links">
+                        <span class="footer-link">256-Bit SSL Protection</span>
+                        <span class="footer-link">Bcrypt Password Security</span>
+                        <span class="footer-link">Cryptographic CSRF Tokens</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div>&copy; 2026 StyleHub Fashion Retail Ltd. All rights reserved.</div>
+                <div>Designed with Green, White, Grey, and Black Aesthetic.</div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/frontend/js/main.js"></script>
+</body>
+</html>
